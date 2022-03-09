@@ -6,6 +6,8 @@
   "main": "server.js",
   "scripts": {
     "install": "cd vendor && npm install",
+    "distww": "cd vendor && npm run distww",
+    "dist": "cd vendor && npm run dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
