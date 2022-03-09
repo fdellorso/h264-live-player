@@ -27,8 +27,8 @@ var vertexShaderScript = Script.createFromSource("x-shader/x-vertex", `
 `);
 
 var fragmentShaderScript = Script.createFromSource("x-shader/x-fragment", `
-  precision highp float;
-  varying highp vec2 vTextureCoord;
+  precision mediump float;
+  varying mediump vec2 vTextureCoord;
   uniform sampler2D texture;
   void main(void) {
     gl_FragColor = texture2D(texture, vTextureCoord);
@@ -206,7 +206,11 @@ var WebGLCanvas = new Class({
 
   onInitWebGL: function () {
     try {
-      this.gl = this.canvas.getContext("webgl");
+      this.gl = this.canvas.getContext("webgl", {
+        alpha: false,
+        desynchronized: true,
+        preserveDrawingBuffer: true
+      });
     } catch(e) {}
     
     if (!this.gl) {

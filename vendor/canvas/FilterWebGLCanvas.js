@@ -16,8 +16,8 @@ var vertexShaderScript = Script.createFromSource("x-shader/x-vertex", `
 `);
 
 var fragmentShaderScript = Script.createFromSource("x-shader/x-fragment", [
-  precision highp float;
-  varying highp vec2 vTextureCoord;
+  precision mediump float;
+  varying mediump vec2 vTextureCoord;
   uniform sampler2D FTexture;
 
   void main(void) {

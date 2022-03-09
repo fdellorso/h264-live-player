@@ -1,0 +1,6 @@
+[submodule "vendor/broadwaymaster"]
+	path = vendor/broadwaymaster
+	url = https://github.com/mbebenita/Broadway
+[submodule "ws-avc-player"]
+	path = ws-avc-player
+	url = https://github.com/matijagaspar/ws-avc-player

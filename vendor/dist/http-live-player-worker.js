@@ -1,5 +1,5 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.WSAvcPlayer = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-(function (__dirname){
+(function (__dirname){(function (){
 // universal module definition
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -199,7 +199,7 @@ e+", "+j+") or no bytes requested!"));j>b-1&&d(Error("only "+b+" bytes available
 var l=B.gd(a,b,j,e,f);j.k?l.k=j.k:j.url&&(l.k=k,l.url=j.url);Object.defineProperty(l,"usedBytes",{get:function(){return this.k.length}});var u={};Object.keys(l.p).forEach(function(a){var b=l.p[a];u[a]=function(){B.mc(l)||d(new B.e(U.ha));return b.apply(k,arguments)}});u.M=function(a,b,c,e,f){B.mc(l)||d(new B.e(U.ha));a=a.g.k;if(f>=a.length)return 0;e=Math.min(a.length-f,e);w(0<=e);if(a.slice)for(var h=0;h<e;h++)b[c+h]=a[f+h];else for(h=0;h<e;h++)b[c+h]=a.get(f+h);return e};l.p=u;return l},md:function(a,
 b,c,e,f,h,j,l,u){function q(){rb=document.pointerLockElement===v||document.mozPointerLockElement===v||document.webkitPointerLockElement===v||document.msPointerLockElement===v}function x(c){function q(c){l||B.xb(a,b,c,e,f,u);h&&h();Za()}var s=m;p.preloadPlugins.forEach(function(a){!s&&a.canHandle(G)&&(a.handle(c,G,q,function(){j&&j();Za()}),s=i)});s||q(c)}p.preloadPlugins||(p.preloadPlugins=[]);if(!tb){tb=i;try{new Blob,ub=i}catch(s){ub=m,console.log("warning: no blob constructor, cannot create blobs with mimetypes")}vb=
 "undefined"!=typeof MozBlobBuilder?MozBlobBuilder:"undefined"!=typeof WebKitBlobBuilder?WebKitBlobBuilder:!ub?console.log("warning: no BlobBuilder"):k;wb="undefined"!=typeof window?window.URL?window.URL:window.webkitURL:g;!p.xc&&"undefined"===typeof wb&&(console.log("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available."),p.xc=i);p.preloadPlugins.push({canHandle:function(a){return!p.xc&&/\.(jpg|jpeg|png|bmp)$/i.test(a)},handle:function(a,b,
-c,e){var f=k;if(ub)try{f=new Blob([a],{type:xb(b)}),f.size!==a.length&&(f=new Blob([(new Uint8Array(a)).buffer],{type:xb(b)}))}catch(h){z.Aa("Blob constructor present but fails: "+h+"; falling back to blob builder")}f||(f=new vb,f.append((new Uint8Array(a)).buffer),f=f.getBlob());var j=wb.createObjectURL(f),l=new Image;l.onload=function(){w(l.complete,"Image "+b+" could not be decoded");var e=document.createElement("canvas");e.width=l.width;e.height=l.height;e.getContext("2d").drawImage(l,0,0);p.preloadedImages[b]=
+c,e){var f=k;if(ub)try{f=new Blob([a],{type:xb(b)}),f.size!==a.length&&(f=new Blob([(new Uint8Array(a)).buffer],{type:xb(b)}))}catch(h){z.Aa("Blob constructor present but fails: "+h+"; falling back to blob builder")}f||(f=new vb,f.append((new Uint8Array(a)).buffer),f=f.getBlob());var j=wb.createObjectURL(f),l=new Image;l.onload=function(){w(l.complete,"Image "+b+" could not be decoded");var e=document.createElement("canvas");e.width=l.width;e.height=l.height;e.getContext("2d",{alpha:false,desynchronized:true,preserveDrawingBuffer:true}).drawImage(l,0,0);p.preloadedImages[b]=
 e;wb.revokeObjectURL(j);c&&c(a)};l.onerror=function(){console.log("Image "+j+" could not be decoded");e&&e()};l.src=j}});p.preloadPlugins.push({canHandle:function(a){return!p.Jg&&a.substr(-4)in{".ogg":1,".wav":1,".mp3":1}},handle:function(a,b,c,e){function f(e){j||(j=i,p.preloadedAudios[b]=e,c&&c(a))}function h(){j||(j=i,p.preloadedAudios[b]=new Audio,e&&e())}var j=m;if(ub){try{var l=new Blob([a],{type:xb(b)})}catch(q){return h()}var l=wb.createObjectURL(l),s=new Audio;s.addEventListener("canplaythrough",
 function(){f(s)},m);s.onerror=function(){if(!j){console.log("warning: browser could not fully decode audio "+b+", trying slower base64 approach");for(var c="",e=0,h=0,l=0;l<a.length;l++){e=e<<8|a[l];for(h+=8;6<=h;)var q=e>>h-6&63,h=h-6,c=c+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[q]}2==h?(c+="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(e&3)<<4],c+="=="):4==h&&(c+="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"[(e&15)<<2],c+="=");
 s.src="data:audio/x-"+b.substr(-3)+";base64,"+c;f(s)}};s.src=l;p.noExitRuntime=i;setTimeout(function(){H||f(s)},1E4)}else return h()}});var v=p.canvas;v&&(v.Pb=v.requestPointerLock||v.mozRequestPointerLock||v.webkitRequestPointerLock||v.msRequestPointerLock||n(),v.kc=document.exitPointerLock||document.mozExitPointerLock||document.webkitExitPointerLock||document.msExitPointerLock||n(),v.kc=v.kc.bind(document),document.addEventListener("pointerlockchange",q,m),document.addEventListener("mozpointerlockchange",
@@ -967,7 +967,7 @@ function A(a){a&&(p.print(a),p.fa(a));H=i;d("abort() at "+Fa()+"\nIf this abort(
 }));
 
 
-}).call(this,"/WebstormProjects/h264-live-player/vendor/broadway")
+}).call(this)}).call(this,"/home/francesco/Develop/h264-live-player/vendor/broadway")
 },{}],2:[function(require,module,exports){
 "use strict";
 var assert = require('../utils/assert');
@@ -1163,8 +1163,8 @@ var vertexShaderScript = Script.createFromSource("x-shader/x-vertex", `
 `);
 
 var fragmentShaderScript = Script.createFromSource("x-shader/x-fragment", `
-  precision highp float;
-  varying highp vec2 vTextureCoord;
+  precision mediump float;
+  varying mediump vec2 vTextureCoord;
   uniform sampler2D texture;
   void main(void) {
     gl_FragColor = texture2D(texture, vTextureCoord);
@@ -1342,7 +1342,11 @@ var WebGLCanvas = new Class({
 
   onInitWebGL: function () {
     try {
-      this.gl = this.canvas.getContext("webgl");
+      this.gl = this.canvas.getContext("webgl", {
+        alpha: false,
+        desynchronized: true,
+        preserveDrawingBuffer: true
+      });
     } catch(e) {}
     
     if (!this.gl) {
@@ -1406,7 +1410,11 @@ var YUVCanvas = new Class({
 
   initialize : function(canvas, size) {
     this.canvas = canvas;
-    this.canvasCtx = this.canvas.getContext("2d");
+    this.canvasCtx = this.canvas.getContext("2d", {
+      alpha: false,
+      desynchronized: true,
+      preserveDrawingBuffer: true
+    });
     this.canvasBuffer = this.canvasCtx.createImageData(size.w, size.h);
   },
 
@@ -1473,8 +1481,8 @@ var vertexShaderScript = Script.createFromSource("x-shader/x-vertex", `
 
 
 var fragmentShaderScript = Script.createFromSource("x-shader/x-fragment", `
-  precision highp float;
-  varying highp vec2 vTextureCoord;
+  precision mediump float;
+  varying mediump vec2 vTextureCoord;
   uniform sampler2D YTexture;
   uniform sampler2D UTexture;
   uniform sampler2D VTexture;
@@ -5068,9 +5076,7 @@ var log            = debug("wsavc");
 var WSAvcPlayer = new Class({
   Implements : [Events],
 
-
   initialize : function(canvas, canvastype) {
-
     this.canvas     = canvas;
     this.canvastype = canvastype;
 
@@ -5086,9 +5092,7 @@ var WSAvcPlayer = new Class({
     //WebSocket variable
     this.ws;
     this.pktnum = 0;
-
   },
-
 
   decode : function(data) {
     var naltype = "invalid frame";
@@ -5112,7 +5116,6 @@ var WSAvcPlayer = new Class({
   },
 
   connect : function(url) {
-
     // Websocket initialization
     if (this.ws != undefined) {
       this.ws.close();
@@ -5124,7 +5127,6 @@ var WSAvcPlayer = new Class({
     this.ws.onopen = () => {
       log("Connected to " + url);
     };
-
 
     var framesList = [];
 
@@ -5139,13 +5141,11 @@ var WSAvcPlayer = new Class({
       framesList.push(frame);
     };
 
-
     var running = true;
 
     var shiftFrame = function() {
       if(!running)
         return;
-
 
       if(framesList.length > 10) {
         log("Dropping frames", framesList.length);
@@ -5154,21 +5154,18 @@ var WSAvcPlayer = new Class({
 
       var frame = framesList.shift();
 
-
       if(frame)
         this.decode(frame);
 
       requestAnimationFrame(shiftFrame);
     }.bind(this);
 
-
     shiftFrame();
-
-
 
     this.ws.onclose = () => {
       running = false;
       log("WSAvcPlayer: Connection closed")
+      this.emit("close");
     };
 
   },
@@ -5191,6 +5188,10 @@ var WSAvcPlayer = new Class({
       this.canvas.width  = cmd.width;
       this.canvas.height = cmd.height;
     }
+
+    if(cmd.action == "busy") {
+      this.emit("busy");
+    }
   },
 
   disconnect : function() {
@@ -5209,7 +5210,6 @@ var WSAvcPlayer = new Class({
     log("Sent STOPSTREAM");
   },
 });
-
 
 module.exports = WSAvcPlayer;
 module.exports.debug = debug;
@@ -5234,6 +5234,21 @@ self.onmessage = function(e) {
             break;
         case 'connect':
             player.player.connect(msg.url);
+            player.player.on('canvasReady', () => {
+                self.postMessage({
+                    cmd: 'canvasReady'
+                })
+            })
+            player.player.on('busy', () => {
+                self.postMessage({
+                    cmd: 'busy'
+                })
+            })
+            player.player.on('close', () => {
+                self.postMessage({
+                    cmd: 'close'
+                })
+            })
             break;
         case 'disconnect':
             player.disconnect();
@@ -5242,6 +5257,5 @@ self.onmessage = function(e) {
             throw 'unknown cmd ' + msg.cmd;
     }
 };
-
 },{"./index":47}]},{},[48])(48)
 });

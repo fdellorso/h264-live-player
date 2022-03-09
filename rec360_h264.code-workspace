@@ -1,0 +1,74 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"todo-tree.general.tags": [
+		  "BUG",
+		  "FIXME",
+		  "TODO",
+		  "NOTE"
+		],
+		"todo-tree.highlights.customHighlight": {
+			"BUG": {
+				"icon": "bug",
+				"iconColour": "darkred",
+				"type": "text",
+				"background": "darkred",
+				"foreground": "black"
+			},
+			"FIXME": {
+				"icon": "tools",
+				"iconColour": "gold",
+				"type": "text",
+				"background": "gold",
+				"foreground": "black"
+			},
+			"TODO": {
+				"icon": "checklist",
+				"iconColour": "forestgreen",
+				"type": "text",
+				"background": "forestgreen",
+				"foreground": "black",
+			},
+			"NOTE": {
+				"icon": "note",
+				"iconColour": "palegoldenrod",
+				"type": "text",
+				"background": "palegoldenrod",
+				
+			}
+		},
+		// "editor.fontFamily": "'Noto Mono for Powerline'",
+		"editor.suggestSelection": "first",
+		"editor.tabSize": 2,
+		"explorer.confirmDelete": false,
+		"explorer.confirmDragAndDrop": false,
+		"explorer.incrementalNaming": "smart",
+		"printcode.fontSize": 8,
+		"javascript.format.enable": false,
+		"javascript.validate.enable": false,
+		"[javascript]": {
+		  "editor.defaultFormatter": "standard.vscode-standard",
+		  "editor.formatOnSave": true
+		},
+		"[css]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode",
+		  "editor.formatOnSave": true
+		},
+		"[json]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode",
+		  "editor.formatOnSave": true
+		},
+		"[html]": {
+		  "editor.defaultFormatter": "esbenp.prettier-vscode",
+		  "editor.formatOnSave": true
+		},
+		"files.associations": {
+		  "*.js": "javascript",
+		  "*.ejs": "html"
+		},
+	  }
+}

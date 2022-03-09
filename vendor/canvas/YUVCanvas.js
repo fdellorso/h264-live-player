@@ -7,7 +7,11 @@ var YUVCanvas = new Class({
 
   initialize : function(canvas, size) {
     this.canvas = canvas;
-    this.canvasCtx = this.canvas.getContext("2d");
+    this.canvasCtx = this.canvas.getContext("2d", {
+      alpha: false,
+      desynchronized: true,
+      preserveDrawingBuffer: true
+    });
     this.canvasBuffer = this.canvasCtx.createImageData(size.w, size.h);
   },
 

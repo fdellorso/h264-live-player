@@ -12,9 +12,7 @@ var log            = debug("wsavc");
 var WSAvcPlayer = new Class({
   Implements : [Events],
 
-
   initialize : function(canvas, canvastype) {
-
     this.canvas     = canvas;
     this.canvastype = canvastype;
 
@@ -30,9 +28,7 @@ var WSAvcPlayer = new Class({
     //WebSocket variable
     this.ws;
     this.pktnum = 0;
-
   },
-
 
   decode : function(data) {
     var naltype = "invalid frame";
@@ -56,7 +52,6 @@ var WSAvcPlayer = new Class({
   },
 
   connect : function(url) {
-
     // Websocket initialization
     if (this.ws != undefined) {
       this.ws.close();
@@ -68,7 +63,6 @@ var WSAvcPlayer = new Class({
     this.ws.onopen = () => {
       log("Connected to " + url);
     };
-
 
     var framesList = [];
 
@@ -83,13 +77,11 @@ var WSAvcPlayer = new Class({
       framesList.push(frame);
     };
 
-
     var running = true;
 
     var shiftFrame = function() {
       if(!running)
         return;
-
 
       if(framesList.length > 10) {
         log("Dropping frames", framesList.length);
@@ -98,21 +90,18 @@ var WSAvcPlayer = new Class({
 
       var frame = framesList.shift();
 
-
       if(frame)
         this.decode(frame);
 
       requestAnimationFrame(shiftFrame);
     }.bind(this);
 
-
     shiftFrame();
-
-
 
     this.ws.onclose = () => {
       running = false;
       log("WSAvcPlayer: Connection closed")
+      this.emit("close");
     };
 
   },
@@ -135,6 +124,10 @@ var WSAvcPlayer = new Class({
       this.canvas.width  = cmd.width;
       this.canvas.height = cmd.height;
     }
+
+    if(cmd.action == "busy") {
+      this.emit("busy");
+    }
   },
 
   disconnect : function() {
@@ -153,7 +146,6 @@ var WSAvcPlayer = new Class({
     log("Sent STOPSTREAM");
   },
 });
-
 
 module.exports = WSAvcPlayer;
 module.exports.debug = debug;

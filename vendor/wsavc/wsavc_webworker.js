@@ -17,6 +17,21 @@ self.onmessage = function(e) {
             break;
         case 'connect':
             player.player.connect(msg.url);
+            player.player.on('canvasReady', () => {
+                self.postMessage({
+                    cmd: 'canvasReady'
+                })
+            })
+            player.player.on('busy', () => {
+                self.postMessage({
+                    cmd: 'busy'
+                })
+            })
+            player.player.on('close', () => {
+                self.postMessage({
+                    cmd: 'close'
+                })
+            })
             break;
         case 'disconnect':
             player.disconnect();
