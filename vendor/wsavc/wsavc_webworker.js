@@ -38,7 +38,7 @@ self.onmessage = function (e) {
       })
       break
     case 'disconnect':
-      player.disconnect()
+      player.player.disconnect()
       break
     default:
       throw err
