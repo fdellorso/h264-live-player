@@ -49,7 +49,7 @@ const WSAvcPlayer = new Class({
         naltype = 'PPS'
       }
     }
-    log('Passed ' + naltype + ' to decoder')
+    log('WSAvcPlayer: Passed ' + naltype + ' to decoder')
     this.avc.decode(data)
   },
 
@@ -63,7 +63,8 @@ const WSAvcPlayer = new Class({
     this.ws.binaryType = 'arraybuffer'
 
     this.ws.onopen = () => {
-      log('Connected to ' + url)
+      log('WSAvcPlayer: Connected to ' + url)
+      this.emit('connected', url)
     }
 
     let framesList = []
@@ -84,7 +85,7 @@ const WSAvcPlayer = new Class({
       if (!running) { return }
 
       if (framesList.length > 10) {
-        log('Dropping frames', framesList.length)
+        log('WSAvcPlayer: Dropping frames', framesList.length)
         framesList = []
       }
 
@@ -115,7 +116,7 @@ const WSAvcPlayer = new Class({
   },
 
   cmd: function (cmd) {
-    log('Incoming request', cmd)
+    log('WSAvcPlayer: Incoming request', cmd)
 
     if (cmd.action === 'init') {
       this.initCanvas(cmd.width, cmd.height)
@@ -135,12 +136,12 @@ const WSAvcPlayer = new Class({
   playStream: function () {
     const message = 'REQUESTSTREAM '
     this.ws.send(message)
-    log('Sent ' + message)
+    log('WSAvcPlayer: Sent ' + message)
   },
 
   stopStream: function () {
     this.ws.send('STOPSTREAM')
-    log('Sent STOPSTREAM')
+    log('WSAvcPlayer: Sent STOPSTREAM')
   }
 })
 

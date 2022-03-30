@@ -21,6 +21,12 @@ self.onmessage = function (e) {
       break
     case 'connect':
       player.player.connect(msg.url)
+      player.player.on('connected', (url) => {
+        self.postMessage({
+          cmd: 'connected',
+          url: url
+        })
+      })
       player.player.on('canvasReady', () => {
         self.postMessage({
           cmd: 'canvasReady'

@@ -9,7 +9,9 @@
     "distww": "cd vendor && npm run distww",
     "dist": "cd vendor && npm run dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "commit": "git commit -a -m",
+    "commit:test": "git commit -a --dry-run -m"
   },
   "author": "",
   "license": "ISC",
