@@ -32,6 +32,12 @@ self.onmessage = function (e) {
           cmd: 'canvasReady'
         })
       })
+      player.player.on('fps', (fps) => {
+        self.postMessage({
+          cmd: 'fps',
+          fps: fps
+        })
+      })
       player.player.on('busy', () => {
         self.postMessage({
           cmd: 'busy'

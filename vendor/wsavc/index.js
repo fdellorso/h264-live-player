@@ -80,8 +80,9 @@ const WSAvcPlayer = new Class({
     }
 
     let running = true
+    let previousTimeStamp
 
-    const shiftFrame = function () {
+    const shiftFrame = function (timestamp) {
       if (!running) { return }
 
       if (framesList.length > 10) {
@@ -91,7 +92,16 @@ const WSAvcPlayer = new Class({
 
       const frame = framesList.shift()
 
-      if (frame) { this.decode(frame) }
+      if (frame) {
+        if (previousTimeStamp !== undefined) {
+          const elapsed = timestamp - previousTimeStamp
+          const fps = 1 / (elapsed / 1000)
+          this.emit('fps', fps.toFixed())
+        }
+        previousTimeStamp = timestamp
+
+        this.decode(frame)
+      }
 
       requestAnimationFrame(shiftFrame)
     }.bind(this)
@@ -134,9 +144,8 @@ const WSAvcPlayer = new Class({
   },
 
   playStream: function () {
-    const message = 'REQUESTSTREAM '
-    this.ws.send(message)
-    log('WSAvcPlayer: Sent ' + message)
+    this.ws.send('REQUESTSTREAM')
+    log('WSAvcPlayer: Sent REQUESTSTREAM')
   },
 
   stopStream: function () {
